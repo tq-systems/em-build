@@ -1,0 +1,62 @@
+Energy Manager OS (EMOS) & EM SDK build scripts
+===============================================
+
+The configuration files and scripts in this repository are used to set up the
+Yocto-based build environment for the EM SDK, while also allowing to add custom
+layers to the bulid configuration.
+
+Two scripts are provided:
+
+* em-update:
+
+  Clones or updates the git repositories for the used Yocto layers in the
+  "layers" subdirectory, as configured in em-layers.conf
+
+* em-build-env:
+
+  em-build-env must be sourced by the shell, e.g.:
+
+    . ./em-build-env
+
+  This script corresponds to oe-init-build-env found in OpenEmbedded/Yocto, but
+  it will additionally update the conf/bblayers file. It must be sourced in each
+  shell that is used to run builds. After sourcing em-build-env, the command
+
+    bitbake em-bundle
+
+  is used to build the default EM update bundle. The Yocto build configuration
+  can be adjusted in conf/local.conf in the generated build directory or in
+  custom layers.
+
+
+Configuration
+-------------
+
+The cloned layers are configured in the files em-layers.conf and
+local/em-layers.conf. local/em-layers.conf does not exist by default and can be
+used to add custom layers to the build. The "local" directory is excluded from
+source control in the em-build repo itself; if desired, "local" can be made into
+a separate git repository to track changes of local/em-layers.conf.
+
+An example local/em-layers.conf is given in the following:
+
+    LAYERS += meta-custom
+
+    meta-custom_repo           = ssh://git@git.example.com/meta-custom.git
+    meta-custom_branch         = master
+    meta-custom_commit         =
+    meta-custom_subdirs        =
+
+Each layer must be a git repository; the URL and branch that should be cloned
+are configured in the ..._repo and ..._branch variables.
+
+The ..._commit variable defined a specific commit from the cloned branch that
+should be checked out to allow creating a reproducible build environment. If
+left empty, the layer will be updated to the HEAD of the given branch on each
+run on em-update.
+
+The ..._subdirs variable allows to provide a (space-separated) list of
+subdirectories of the git repository that should be added to bblayers.conf. If
+left empty, the toplevel directory of the repository will be used.
+
+The em-layers.conf files follow standard Makefile syntax.

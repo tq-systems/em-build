@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Based on:
+#
+# OE Build Environment Setup Script
+#
+# Copyright (C) 2006-2011 Linux Foundation
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+if [ -n "$BASH_SOURCE" ]; then
+    THIS_SCRIPT=$BASH_SOURCE
+elif [ -n "$ZSH_NAME" ]; then
+    THIS_SCRIPT=$0
+else
+    THIS_SCRIPT="$(pwd)/yoda-build-env"
+fi
+if [ -n "$BBSERVER" ]; then
+    unset BBSERVER
+fi
+
+if [ -z "$ZSH_NAME" ] && [ "$0" = "$THIS_SCRIPT" ]; then
+    echo "Error: This script needs to be sourced. Please run as '. $THIS_SCRIPT'"
+    exit 1
+fi
+
+OEROOT="$(dirname "$THIS_SCRIPT")"
+OEROOT="$(readlink -f "$OEROOT")"
+unset THIS_SCRIPT
+
+# Set build and bitbake paths for oe-buildenv-internal
+set build layers/poky/bitbake
+
+export OEROOT
+. "$OEROOT"/layers/poky/scripts/oe-buildenv-internal && {
+    mkdir -p "$BUILDDIR"/conf
+    (cd "$OEROOT" && make -f .scripts/layers.mk show-bblayers) >"$BUILDDIR"/conf/bblayers.conf
+    "$OEROOT"/layers/poky/scripts/oe-setup-builddir
+} || {
+    unset OEROOT
+    return 1
+}
+
+export GIT_SERVER="git://$(cd "$OEROOT" && make -f .scripts/layers.mk show-git-server)"
+export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE GIT_SERVER"
+
+unset OEROOT
+
+[ -z "$BUILDDIR" ] || cd "$BUILDDIR"
