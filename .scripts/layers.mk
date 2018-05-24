@@ -14,6 +14,9 @@ include em-layers.conf
 
 git = git -C 'layers/$(1)'
 
+# Resolves to the value of the given variable if it is properly defined (not undefined or inherited from environment)
+ifset = $(if $(filter-out undefined environment,$(origin $(1))),$($(1)))
+
 define update-layer
 	echo 'Updating layer $(1)...'
 
@@ -23,21 +26,26 @@ define update-layer
 	$(git) remote set-url origin '$($(1)_repo)'
 
 	# Skip fetch if a specific commit is requested that is already available
-	if [ -z '$($(1)_commit)' ] || ! ($(git) show --oneline --no-patch '$($(1)_commit)^{commit}' -- >/dev/null 2>&1); then \
+	if [ -z '$(call ifset,$(1)_commit)' ] || ! ($(git) show --oneline --no-patch '$($(1)_commit)^{commit}' -- >/dev/null 2>&1); then \
 		$(git) fetch --tags --prune origin; \
 	fi
 
 	# If we do not need a specific commit, use base branch
-	$(git) checkout '$(if $($(1)_commit),$($(1)_commit),origin/$($(1)_branch))' -B '$($(1)_branch)'
+	$(git) checkout '$(if $(call isset,$(1)_commit),$($(1)_commit),origin/$($(1)_branch))' -B '$($(1)_branch)'
+endef
 
-	# Do not remove the following empty line, it is required
-	# for foreach
-
+define update-layers
+	$(foreach layer,$(LAYERS),
+		$(if $(call ifset,$(layer)_repo),
+			$(call update-layer,$(layer)),
+			echo 'Skipping layer $(layer)'
+		)
+	)
 endef
 
 update:
 	mkdir -p layers
-	$(foreach layer,$(LAYERS),$(call update-layer,$(layer)))
+	$(update-layers)
 
 
 layer-dirs = $(if $($(1)_subdirs),$(foreach dir,$($(1)_subdirs),$(1)/$(dir)),$(1))

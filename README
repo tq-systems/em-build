@@ -44,19 +44,24 @@ An example local/em-layers.conf is given in the following:
 
     meta-custom_repo           = ssh://git@git.example.com/meta-custom.git
     meta-custom_branch         = master
-    meta-custom_commit         =
-    meta-custom_subdirs        =
+    # meta-custom_commit       =
+    # meta-custom_subdirs      =
 
 Each layer must be a git repository; the URL and branch that should be cloned
 are configured in the ..._repo and ..._branch variables.
 
-The ..._commit variable defined a specific commit from the cloned branch that
+The ..._commit variable defines a specific commit from the cloned branch that
 should be checked out to allow creating a reproducible build environment. If
-left empty, the layer will be updated to the HEAD of the given branch on each
-run on em-update.
+unset, the layer will be updated to the HEAD of the given branch on each run of
+em-update.
 
 The ..._subdirs variable allows to provide a (space-separated) list of
 subdirectories of the git repository that should be added to bblayers.conf. If
-left empty, the toplevel directory of the repository will be used.
+unset, the toplevel directory of the repository will be used.
+
+For development purposes, it is also possible to add manually managed layer
+directories under layers/. By adding such a layer to local/em-layers.conf, but
+leaving the ..._repo variable unset, em-update will simply ignore the directory.
+em-build-env will add it (or the configured subdirs) to bblayers.conf.
 
 The em-layers.conf files follow standard Makefile syntax.
