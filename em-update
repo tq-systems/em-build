@@ -1,3 +1,3 @@
 #!/bin/sh
 
-make -f .scripts/layers.mk update
+make -f .scripts/em.mk update

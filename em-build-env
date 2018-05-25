@@ -41,19 +41,19 @@ OEROOT="$(readlink -f "$OEROOT")"
 unset THIS_SCRIPT
 
 # Set build and bitbake paths for oe-buildenv-internal
-set build layers/poky/bitbake
+set build bitbake
 
 export OEROOT
-. "$OEROOT"/layers/poky/scripts/oe-buildenv-internal && {
+. "$OEROOT"/layers/openembedded-core/scripts/oe-buildenv-internal && {
     mkdir -p "$BUILDDIR"/conf
-    (cd "$OEROOT" && make -f .scripts/layers.mk show-bblayers) >"$BUILDDIR"/conf/bblayers.conf
-    "$OEROOT"/layers/poky/scripts/oe-setup-builddir
+    (cd "$OEROOT" && make -f .scripts/em.mk show-bblayers) >"$BUILDDIR"/conf/bblayers.conf
+    "$OEROOT"/layers/openembedded-core/scripts/oe-setup-builddir
 } || {
     unset OEROOT
     return 1
 }
 
-export GIT_SERVER="git://$(cd "$OEROOT" && make -f .scripts/layers.mk show-git-server)"
+export GIT_SERVER="git://$(cd "$OEROOT" && make -f .scripts/em.mk show-git-server)"
 export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE GIT_SERVER"
 
 unset OEROOT

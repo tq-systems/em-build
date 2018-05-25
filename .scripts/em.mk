@@ -12,15 +12,15 @@ include em-layers.conf
 # - show-git-server: outputs the TQ git server base path
 
 
-git = git -C 'layers/$(1)'
+git = git -C '$(2)'
 
 # Resolves to the value of the given variable if it is properly defined (not undefined or inherited from environment)
 ifset = $(if $(filter-out undefined environment,$(origin $(1))),$($(1)))
 
-define update-layer
-	echo 'Updating layer $(1)...'
+define update-repo
+	echo 'Updating $(2)...'
 
-	[ -d 'layers/$(1)' ] || git clone '$($(1)_repo)' -b '$($(1)_branch)' 'layers/$(1)'
+	[ -d '$(2)' ] || git clone '$($(1)_repo)' -b '$($(1)_branch)' '$(2)'
 
 	# Update repo URL
 	$(git) remote set-url origin '$($(1)_repo)'
@@ -37,14 +37,15 @@ endef
 define update-layers
 	$(foreach layer,$(LAYERS),
 		$(if $(call ifset,$(layer)_repo),
-			$(call update-layer,$(layer)),
-			echo 'Skipping layer $(layer)'
+			$(call update-repo,$(layer),layers/$(layer)),
+			echo 'Skipping layers/$(layer)'
 		)
 	)
 endef
 
 update:
 	mkdir -p layers
+	$(call update-repo,bitbake,bitbake)
 	$(update-layers)
 
 
