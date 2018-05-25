@@ -31,7 +31,7 @@ define update-repo
 	fi
 
 	# If we do not need a specific commit, use base branch
-	$(git) checkout '$(if $(call isset,$(1)_commit),$($(1)_commit),origin/$($(1)_branch))' -B '$($(1)_branch)'
+	$(git) checkout '$(if $(call ifset,$(1)_commit),$($(1)_commit),origin/$($(1)_branch))' -B '$($(1)_branch)'
 endef
 
 define update-layers
