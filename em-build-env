@@ -53,7 +53,7 @@ export OEROOT
     return 1
 }
 
-export GIT_SERVER="git://$(cd "$OEROOT" && make -f .scripts/em.mk show-git-server)"
+export GIT_SERVER="$(cd "$OEROOT" && make -f .scripts/em.mk show-git-server)"
 export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE GIT_SERVER"
 
 unset OEROOT
