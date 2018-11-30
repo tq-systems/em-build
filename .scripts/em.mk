@@ -9,7 +9,6 @@ include em-layers.conf
 #
 # - update: updates all layers defined in em-layers.conf and local/em-layers.conf
 # - show-bblayers: outputs a bblayers.conf including all layers defined in em-layers and local/em-layers.conf
-# - show-git-server: outputs the TQ git server base path
 
 
 git = git -C '$(2)'
@@ -66,8 +65,5 @@ endef
 show-bblayers:
 	echo "$$bblayers"
 
-show-git-server:
-	echo '$(GIT_SERVER)'
-
-.PHONY: update show-bblayers show-git-server
+.PHONY: update show-bblayers
 .SILENT:
