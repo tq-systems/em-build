@@ -22,7 +22,7 @@ Two scripts are provided:
   it will additionally update the conf/bblayers file. It must be sourced in each
   shell that is used to run builds. After sourcing em-build-env, the command
 
-    bitbake em-bundle
+    bitbake em-bundle-sdk
 
   is used to build the default EM update bundle. The Yocto build configuration
   can be adjusted in conf/local.conf in the generated build directory or in
