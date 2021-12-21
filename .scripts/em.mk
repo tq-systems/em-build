@@ -51,19 +51,22 @@ update:
 layer-dirs = $(if $($(1)_subdirs),$(foreach dir,$($(1)_subdirs),$(1)/$(dir)),$(1))
 all-dirs = $(foreach layer,$(LAYERS),$(call layer-dirs,$(layer)))
 
+EMPTY =
+BS = \$(EMPTY)
+
 export define bblayers
 # Do not edit! This file is managed automatically by em-build-env.
 
 BBPATH = "$${TOPDIR}"
 BBFILES ?= ""
 
-BBLAYERS ?= " \\
- $(foreach dir,$(all-dirs), $${TOPDIR}/../layers/$(dir) \\
+BBLAYERS ?= " $(BS)
+ $(foreach dir,$(all-dirs), $${TOPDIR}/../layers/$(dir) $(BS)
 )  "
 endef
 
 show-bblayers:
-	echo "$$bblayers"
+	printf '%s\n' "$$bblayers"
 
 .PHONY: update show-bblayers
 .SILENT:
