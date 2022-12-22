@@ -46,7 +46,7 @@ set build bitbake
 export OEROOT
 . "$OEROOT"/layers/openembedded-core/scripts/oe-buildenv-internal && {
     mkdir -p "$BUILDDIR"/conf
-    (cd "$OEROOT" && make -f .scripts/em.mk show-bblayers) >"$BUILDDIR"/conf/bblayers.conf
+    (make -s -C "$OEROOT" -f .scripts/em.mk show-bblayers) >"$BUILDDIR"/conf/bblayers.conf
     "$OEROOT"/layers/openembedded-core/scripts/oe-setup-builddir
 } || {
     unset OEROOT
