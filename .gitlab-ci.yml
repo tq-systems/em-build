@@ -1,0 +1,19 @@
+---
+include:
+- project: tq-em/build/docker/base-ci
+  file: rules.yml
+  ref: master
+
+Trigger Core Snapshots:
+  extends:
+    - .rule-include-default-branch
+  trigger:
+    project: tq-em/build/yocto-scripts
+    strategy: depend
+
+Trigger Core QA:
+  extends:
+    - .rule-include-merge-request-for-default-branch
+  trigger:
+    project: tq-em/build/yocto-scripts
+    strategy: depend
