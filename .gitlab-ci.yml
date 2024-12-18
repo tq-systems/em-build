@@ -8,12 +8,12 @@ Trigger Core Snapshots:
   extends:
     - .rule-include-default-branch
   trigger:
-    project: tq-em/build/yocto-scripts
+    project: tq-em/build/docker/yocto-scripts
     strategy: depend
 
 Trigger Core QA:
   extends:
     - .rule-include-merge-request-for-default-branch
   trigger:
-    project: tq-em/build/yocto-scripts
+    project: tq-em/build/docker/yocto-scripts
     strategy: depend
