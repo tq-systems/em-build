@@ -11,9 +11,18 @@ Trigger Core Snapshots:
     project: tq-em/build/docker/yocto-scripts
     strategy: depend
 
-Trigger Core QA:
+Trigger Core QA Snapshots:
+  extends:
+    - .rule-include-default-branch
+  trigger:
+    project: tq-em/build/yocto/core-qa-bundle
+    strategy: depend
+
+Trigger Core QA Tests:
   extends:
     - .rule-include-merge-request-for-default-branch
   trigger:
-    project: tq-em/build/docker/yocto-scripts
+    project: tq-em/build/yocto/core-qa-bundle
     strategy: depend
+  variables:
+    RUN_INTEGRATION_TESTS: 'true'
