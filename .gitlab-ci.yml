@@ -4,9 +4,14 @@ include:
   file: rules.yml
   ref: master
 
+.em-build-git-reference:
+  variables:
+    REF_EM_BUILD: $CI_COMMIT_SHA
+
 Trigger Core Snapshots:
   extends:
     - .rule-include-default-branch
+    - .em-build-git-reference
   trigger:
     project: tq-em/build/docker/yocto-scripts
     strategy: depend
@@ -14,6 +19,7 @@ Trigger Core Snapshots:
 Trigger Core QA Snapshots:
   extends:
     - .rule-include-default-branch
+    - .em-build-git-reference
   trigger:
     project: tq-em/build/yocto/core-qa-bundle
     strategy: depend
@@ -21,8 +27,11 @@ Trigger Core QA Snapshots:
 Trigger Core QA Tests:
   extends:
     - .rule-include-merge-request-for-default-branch
+    - .em-build-git-reference
   trigger:
     project: tq-em/build/yocto/core-qa-bundle
     strategy: depend
   variables:
     RUN_INTEGRATION_TESTS: 'true'
+    RUN_OPENVAS_SCAN: 'true'
+    GIT_REFERENCE: em-build_$CI_COMMIT_SHORT_SHA
