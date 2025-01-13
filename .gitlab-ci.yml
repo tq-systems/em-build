@@ -35,3 +35,13 @@ Trigger Core QA Tests:
     RUN_INTEGRATION_TESTS: 'true'
     RUN_OPENVAS_SCAN: 'true'
     GIT_REFERENCE: em-build_$CI_COMMIT_SHORT_SHA
+
+Trigger Core PQT Tests:
+  extends:
+    - .rule-include-merge-request-for-default-branch
+    - .em-build-git-reference
+  trigger:
+    project: tq-em/build/yocto/core-pqt-bundle
+    strategy: depend
+  variables:
+    RUN_INTERFACE_TESTS: 'true'
