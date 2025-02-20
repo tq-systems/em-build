@@ -1,1 +1,1 @@
-TEMPLATECONF="layers/meta-emos/conf"
+TEMPLATECONF="layers/meta-emos/conf/templates/default"
