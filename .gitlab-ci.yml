@@ -8,6 +8,10 @@ include:
   variables:
     REF_EM_BUILD: $CI_COMMIT_SHA
 
+.internal-meta-emos-refs:
+  variables:
+    INTERNAL_META_EMOS_BRANCH: $INTERNAL_META_EMOS_BRANCH
+
 Trigger Core Snapshots:
   extends:
     - .rule-include-default-branch
@@ -26,8 +30,8 @@ Trigger Core QA Snapshots:
 
 Trigger Core QA Tests:
   extends:
-    - .rule-include-merge-request-for-default-branch
     - .em-build-git-reference
+    - .internal-meta-emos-refs
   trigger:
     project: tq-em/build/yocto/core-qa-bundle
     strategy: depend
@@ -35,13 +39,31 @@ Trigger Core QA Tests:
     RUN_INTEGRATION_TESTS: 'true'
     RUN_OPENVAS_SCAN: 'true'
     GIT_REFERENCE: em-build_$CI_COMMIT_SHORT_SHA
+  rules:
+    - if: >
+        $CI_PIPELINE_SOURCE == "merge_request_event"
+        && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+    - if: >
+        $CI_PIPELINE_SOURCE == "schedule"
+        && $INTERNAL_META_EMOS_BRANCH != ''
+      variables:
+        OVERRIDE_LOCAL_CONF: $INTERNAL_LOCAL_CONF
 
 Trigger Core PQT Tests:
   extends:
-    - .rule-include-merge-request-for-default-branch
     - .em-build-git-reference
+    - .internal-meta-emos-refs
   trigger:
     project: tq-em/build/yocto/core-pqt-bundle
     strategy: depend
   variables:
     RUN_INTERFACE_TESTS: 'true'
+  rules:
+    - if: >
+        $CI_PIPELINE_SOURCE == "merge_request_event"
+        && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+    - if: >
+        $CI_PIPELINE_SOURCE == "schedule"
+        && $INTERNAL_META_EMOS_BRANCH != ''
+      variables:
+        OVERRIDE_LOCAL_CONF: $PQT_LOCAL_CONF
