@@ -1,7 +1,7 @@
 ---
 include:
-- project: tq-em/build/docker/base-ci
-  file: rules.yml
+- project: tq-em/build/docker/base
+  file: ci/rules.yml
   ref: master
 
 .em-build-git-reference:
