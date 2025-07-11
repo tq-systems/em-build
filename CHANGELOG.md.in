@@ -1,0 +1,3 @@
+## [{{ version }}]
+### Changed
+- gitlab-ci: move from deprecated base-ci to base
