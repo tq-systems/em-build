@@ -1,16 +1,20 @@
 ---
 include:
 - project: tq-em/build/docker/base
-  file: ci/rules.yml
+  file: ci/include.yml
   ref: master
 
 .em-build-git-reference:
   variables:
     REF_EM_BUILD: $CI_COMMIT_SHA
+    GITLAB_RUNNER_TAG: 'tq-em-yocto-fast'
 
 .internal-meta-emos-refs:
   variables:
     INTERNAL_META_EMOS_BRANCH: $INTERNAL_META_EMOS_BRANCH
+
+Gitleaks:
+  extends: .gitleaks
 
 Trigger Core Snapshots:
   extends:
