@@ -1,6 +1,0 @@
-We have different components with different licenses (a mix of TQSSLA_V1.0.1 and GPLv2).
-Please see: GPLv2 and TQSSLA_V1.0.1
-
-The file 'em-build-env' is based on the file 'oe-init-build-env' from the project openembedded-core
-(branch: rocko, commit: 6c20c55) and is licensed under GPL version 2.
-License information for any other files is either explicitly stated or defaults to TQSSLA_V1.0.1.

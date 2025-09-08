@@ -66,3 +66,14 @@ The `em-layers.conf` files follow standard Makefile syntax.
 
 ## Release
 Typically, a release commit only updates the `em-layers.conf` file.
+
+## License information
+We have different components with different licenses (a mix of TQSPSLA_V1.0.3 and GPLv2).
+Please see the files `GPL-2.0` and `TQSPSLA_V1.0.3`.
+
+The file 'em-build-env' is based on the file 'oe-init-build-env' from the project openembedded-core
+(branch: rocko, commit: 6c20c55) and is licensed under GPL version 2.
+License information for any other files is either explicitly stated or defaults to TQSPSLA_V1.0.3.
+
+All files in this project which are licensed under TQSPSLA_V1.0.3 are classified as
+product-specific software and bound to the use with the TQ-Systems GmbH product: `EM400`.
