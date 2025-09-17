@@ -1,3 +1,4 @@
 ## [{{ version }}]
 ### Changed
 - gitlab-ci: move from deprecated base-ci to base
+- em-build-env: enable execution with make
