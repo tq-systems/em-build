@@ -1,1 +1,3 @@
 ## [{{ version }}]
+### Added
+- em-layers: add meta-cyclonedx to static layer conf
