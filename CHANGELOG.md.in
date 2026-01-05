@@ -1,8 +1,3 @@
 ## [{{ version }}]
 ### Added
-- gitlab-ci: add trigger for public yocto snapshot
-
-### Changed
-- gitlab-ci: move from deprecated base-ci to base
-- em-build-env: enable execution with make
-- em-layers: update to yocto 5.0.12
+- em-layers: add meta-cyclonedx to static layer conf
