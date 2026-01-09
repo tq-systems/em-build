@@ -1,3 +1,10 @@
+## [8.2.1] - 2026-01-09
+### Added
+- em-layers: add meta-cyclonedx to static layer conf
+
+### Changed
+- Updated meta-emos
+
 ## [8.2.0] - 2025-12-05
 ### Added
 - gitlab-ci: add trigger for public yocto snapshot
