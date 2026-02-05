@@ -1,3 +1,7 @@
+## [8.2.2] - 2026-02-05
+### Changed
+- Updated meta-emos
+
 ## [8.2.1] - 2026-01-09
 ### Added
 - em-layers: add meta-cyclonedx to static layer conf
