@@ -1,3 +1,7 @@
+## [8.1.1] - 2026-02-05
+### Changed
+- Updated meta-emos
+
 ## [8.1.0] - 2025-11-14
 ### Changed
 - Updated meta-emos
