@@ -1,8 +1,8 @@
 ---
 include:
-- project: tq-em/build/docker/base
+- project: tq-em/public/build/base
   file: ci/include.yml
-  ref: master
+  ref: main
 
 .em-build-git-reference:
   variables:
@@ -16,15 +16,7 @@ include:
 Gitleaks:
   extends: .gitleaks
 
-Trigger Internal Core Snapshots:
-  extends:
-    - .rule-include-default-branch
-    - .em-build-git-reference
-  trigger:
-    project: tq-em/build/docker/yocto-scripts
-    strategy: depend
-
-Trigger Public Core Snapshots:
+Trigger Core Snapshots:
   extends:
     - .rule-include-default-branch
     - .em-build-git-reference

@@ -1,3 +1,6 @@
 ## [{{ version }}]
 ### Added
-- em-layers: add meta-cyclonedx to static layer conf
+- em-layers: Add meta-cyclonedx
+
+### Changed
+- em-layers: Remove meta-clang
