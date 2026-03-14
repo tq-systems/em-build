@@ -4,3 +4,4 @@
 
 ### Changed
 - em-layers: Remove meta-clang
+- em-layers: update to yocto 5.0.16
