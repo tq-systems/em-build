@@ -1,3 +1,7 @@
+## [9.0.1] - 2026-04-09
+### Changed
+- em-layers: Updated meta-emos
+
 ## [9.0.0] - 2026-03-13
 ### Added
 - em-layers: Add meta-cyclonedx
