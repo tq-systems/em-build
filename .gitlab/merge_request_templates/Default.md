@@ -2,14 +2,23 @@
 
 Add a description of your merge request here.
 
-## General checklist
+# General checklist
 
-- [ ] Successfully build the core image locally
-- [ ] Successfully build the core image snapshot in CI
-- [ ] Successfull integration tests of the core image in core QA bundle in CI
-- [ ] Successfull boot test of the image
-- [ ] Successfully tested the feature [IP: ]
-- [ ] Updated the documentation
+## Assignee
+- [ ] Successfully tested the changes locally
+- [ ] Successfully tested the changes in the CI
+  - [ ] Merge request pipelines are verified
+  - [ ] Other links:
+  - [ ] Provided a test plan to verify the functionality
+- [ ] The code changes comply to our quality conventions
+- [ ] Updated the documentation: (add link if necessary)
 - [ ] Added a changelog entry
+- [ ] Synchronized changelogs with the latest version (if necessary)
 - [ ] Added a ticket reference: Closes #issue_number
-- [ ] Added comments on more complex parts of the code
+
+## Reviewer
+- [ ] Verified that the changes comply to our quality conventions
+- [ ] Merge request pipelines and other links are verified
+- [ ] Verified that the intended functionality is given
+- [ ] Verified that all acceptance criteria of the referenced ticket are met
+- [ ] The updated documentation is coherent / approved for Confluence pages
