@@ -1,7 +1,4 @@
 ## [{{ version }}]
-### Added
-- em-layers: Add meta-cyclonedx
-
 ### Changed
-- em-layers: Remove meta-clang
-- em-layers: update to yocto 5.0.16
+- em-layers: Remove meta-cyclonedx
+- em-layers: update to yocto 5.0.17
