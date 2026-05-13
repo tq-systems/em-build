@@ -1,3 +1,8 @@
+## [9.0.2] - 2026-05-13
+### Changed
+- em-layers: Remove meta-cyclonedx
+- em-layers: update to yocto 5.0.17
+
 ## [9.0.1] - 2026-04-09
 ### Changed
 - em-layers: Updated meta-emos
