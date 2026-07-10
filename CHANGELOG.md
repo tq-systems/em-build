@@ -1,3 +1,7 @@
+## [9.0.5] - 2026-07-10
+### Changed
+- em-layers: Updated meta-emos
+
 ## [9.0.4] - 2026-06-15
 ### Changed
 - em-layers: Updated meta-emos
