@@ -1,3 +1,7 @@
+## [9.0.7] - 2026-08-17
+### Changed
+- em-layers: update meta-emos
+
 ## [9.0.6] - 2026-07-24
 ### Changed
 - em-layers: update to yocto 5.0.19
