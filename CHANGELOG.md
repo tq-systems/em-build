@@ -1,3 +1,20 @@
+## [9.1.0] - 2026-10-02
+### Changed
+- em-layers: remove meta-ti
+- em-layers: update to yocto 5.0.20
+
+## [9.0.8] - 2026-09-23
+### Changed
+- em-layers: update meta-emos
+
+## [9.0.7] - 2026-08-17
+### Changed
+- em-layers: update meta-emos
+
+## [9.0.6] - 2026-07-24
+### Changed
+- em-layers: update to yocto 5.0.19
+
 ## [9.0.5] - 2026-07-10
 ### Changed
 - em-layers: Updated meta-emos
