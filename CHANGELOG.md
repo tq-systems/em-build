@@ -1,3 +1,7 @@
+## [9.1.1] - 2026-10-05
+### Fixed
+- em-layers: fixed meta-emos reference
+
 ## [9.1.0] - 2026-10-02
 ### Changed
 - em-layers: remove meta-ti
