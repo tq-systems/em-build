@@ -1,3 +1,7 @@
+## [9.1.2] - 2026-10-12
+### Fixed
+- em-layers: update meta-emos
+
 ## [9.1.1] - 2026-10-05
 ### Fixed
 - em-layers: fixed meta-emos reference
